@@ -5,16 +5,14 @@ plugins {
 
 android {
     namespace 'com.loesys.commonfeatures'
-    compileSdk 33
+    compileSdk 34
 
     defaultConfig {
-        applicationId "com.loesys.commonfeatures"
         minSdk 24
-        targetSdk 33
-        versionCode 1
-        versionName "1.0"
+        targetSdk 34
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
     }
 
     buildTypes {
@@ -29,6 +27,16 @@ android {
     }
     kotlinOptions {
         jvmTarget = '1.8'
+    }
+}
+
+allprojects {
+    tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).configureEach {
+        kotlinOptions.jvmTarget = "1.8"
+    }
+
+    tasks.withType(org.jetbrains.kotlin.gradle.tasks.KaptGenerateStubs).configureEach {
+        kotlinOptions.jvmTarget = "1.8"
     }
 }
 
